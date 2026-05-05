@@ -1,0 +1,27 @@
+module demux1to8 (
+    input D,           // ??????? ??????
+    input [2:0] A,     // ??????? ?????
+    input EN,          // enable (???????? 0)
+    output reg [7:0] Q // ??????
+);
+
+always @(*) begin
+    if (EN == 1) begin
+        Q = 8'bzzzzzzzz; // ??????? ????????
+    end else begin
+        Q = 8'b00000000; // ?????????
+
+        case (A)
+            3'b000: Q[0] = D;
+            3'b001: Q[1] = D;
+            3'b010: Q[2] = D;
+            3'b011: Q[3] = D;
+            3'b100: Q[4] = D;
+            3'b101: Q[5] = D;
+            3'b110: Q[6] = D;
+            3'b111: Q[7] = D;
+        endcase
+    end
+end
+
+endmodule
